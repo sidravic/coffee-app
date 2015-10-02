@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151002164502) do
+ActiveRecord::Schema.define(version: 20151002182732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,10 +27,25 @@ ActiveRecord::Schema.define(version: 20151002164502) do
 
   add_index "barista", ["name"], name: "index_barista_on_name", using: :btree
 
+  create_table "categories", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categories", ["name"], name: "index_categories_on_name", using: :btree
+
   create_table "customers", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "name"
     t.string   "email_id"
     t.string   "phone_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "menu_item_categories", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.uuid     "menu_item_id"
+    t.uuid     "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -58,6 +73,14 @@ ActiveRecord::Schema.define(version: 20151002164502) do
     t.string   "status",          default: "OPEN"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+  end
+
+  create_table "sales_aggregates", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.uuid     "menu_item_id"
+    t.integer  "sale_count",         default: 0
+    t.integer  "sales_amount_total", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

@@ -26,6 +26,7 @@ class OrderAcceptService
     find_and_accept_order do
       create_customer
       update_order
+      update_aggregates
     end
   end
 
@@ -55,6 +56,12 @@ class OrderAcceptService
 
   def add_error(message)
     @errors.push(message)
+  end
+
+  def update_aggregates
+    order.menu_items.each do |menu_item|
+      AggregateUpdaterService.new(menu_item).update_aggregate
+    end
   end
 end
 

@@ -22,6 +22,15 @@ RSpec.describe OrderAcceptService, type: :class do
         order_accept_response = OrderAcceptService.new(@order.id, 'Sid').accept!
         expect(order_accept_response.order.customer.nil?).to be_falsey
       end
+
+      it 'should increment the sales aggregates' do
+        order_accept_response = OrderAcceptService.new(@order.id, 'Sid').accept!
+        expect(order_accept_response.order.menu_items.first.sales_aggregate.sale_count).to eql(1)
+        expect(order_accept_response.order.menu_items.first.sales_aggregate.sales_amount_total).to eql(@latte.price_in_cents)
+
+        expect(order_accept_response.order.menu_items.second.sales_aggregate.sale_count).to eql(1)
+        expect(order_accept_response.order.menu_items.second.sales_aggregate.sales_amount_total).to eql(@americano.price_in_cents)
+      end
     end
 
     context 'when an order cannot be found' do

@@ -12,6 +12,7 @@ class Order < ActiveRecord::Base
   validates :barista_id, presence: true
 
   scope :open, Proc.new { where(status: OPEN) }
+  scope :accepted, Proc.new { where(status: ACCEPTED) }
 
   belongs_to :barista
   has_many :order_items
