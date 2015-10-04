@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_barista
+    return nil if not session[:barista]
     @current_barista ||= Barista.find(session[:barista])
   end
 
