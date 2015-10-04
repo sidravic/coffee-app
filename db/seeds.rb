@@ -80,12 +80,3 @@ order4.menu_items.push(americano)
 order4.menu_items.push(chai_tea_latte)
 order4.amount_in_cents += (americano_2.price_in_cents + chai_tea_latte.price_in_cents + americano.price_in_cents)
 order4.accept!
-
-MenuItem.joins(:order, :categories).
-    where('orders.id = ? AND categories.id IN (?)',
-          o.id,
-          [Category.find_by_name('coffee').id,
-           Category.find_by_name('tea').id
-          ])
-
-
