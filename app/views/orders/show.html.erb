@@ -9,7 +9,7 @@
 
 <strong> Total </strong>
 <br/>
-<%= number_to_currency(@order.amount_in_cents/100) %>
+<%= number_to_currency(@order.reload.amount_in_cents/100) %>
 
 <br/>
 <br/>
