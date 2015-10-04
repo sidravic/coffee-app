@@ -12,4 +12,4 @@ C = (function($, window, document, CoffeeApp){
 
 
     return CoffeeApp
-})(jquery, this, this.document, C)
+})(jQuery, this, this.document, C)
