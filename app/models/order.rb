@@ -6,6 +6,7 @@ class Order < ActiveRecord::Base
 
   VALID_STATES = [OPEN, CLOSED, ACCEPTED, CANCELLED]
 
+
   validates :customer_id, presence: true, if: Proc.new {|order| order.closed? }
   validates :amount_in_cents, numericality: true
   validates :status, presence: true, inclusion: {in: VALID_STATES}
@@ -13,6 +14,7 @@ class Order < ActiveRecord::Base
 
   scope :open, Proc.new { where(status: OPEN) }
   scope :accepted, Proc.new { where(status: ACCEPTED) }
+
 
   belongs_to :barista
   has_many :order_items

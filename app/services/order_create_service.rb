@@ -58,6 +58,10 @@ class OrderCreateResponse
     @order = order
   end
 
+  def success?
+    success
+  end
+
   def has_errors?
     !errors.empty?
   end
