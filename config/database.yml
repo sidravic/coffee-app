@@ -80,8 +80,3 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: coffee_app_production
-  username: sidravichandran
-  password:
