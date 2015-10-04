@@ -18,7 +18,7 @@ module TokenGeneratorService
     def generate_unique_token_for_model(model, field)
       unique_token = loop do
         token = SecureRandom.hex
-        break token if not model.where("#{field}": token).exists?
+        break token if not model.where("#{field}" => token).exists?
       end
     end
   end
