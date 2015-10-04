@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :authenticate_barista
+  before_action :redirect_if_barista
 
   def new
   end
@@ -18,5 +18,11 @@ class SessionsController < ApplicationController
 
   def destroy
 
+  end
+
+  private
+
+  def redirect_if_barista
+    redirect_to orders_url and return if current_barista
   end
 end
