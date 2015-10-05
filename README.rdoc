@@ -19,15 +19,15 @@ Code includes provisions for
   3. Cancellations
 
  *  MenuItems
+ 
+Menu Items are added as independent records. 
+Each specialization is considered a new record. For instance American Tall and American Venti
+would be two independent records.
 
- Menu Items are added as independent records. Each specialization
- is considered a new record. For instance American Tall and American Venti
- would be two independent records.
+The size attributes are identified via categories. This allows easy
+extension of newer items to the menu while keeping the menu interface
+consistent. Also enables faceted searching if full text search engines
+are used.
 
- The size attributes are identified via categories. This allows easy
- extension of newer items to the menu while keeping the menu interface
- consistent. Also enables faceted searching if full text search engines
- are used.
-
- Views are fairly crufty and coded in a hurry but the core services do
- most of the work.
+Views are fairly crufty and coded in a hurry but the core services do
+most of the work.
