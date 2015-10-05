@@ -1,45 +1,6 @@
-<h3> Order No. <%= @order.id %> </h3>
+<%= render partial: 'content' %>
 
-<h3>Items</h3>
-<ol>
-    <% @order.menu_items.each do |order_item| %>
-        <li><%= with_categories(order_item) %></li>
-    <% end  %>
-</ol>
-
-<strong> Total </strong>
-<br/>
-<%= number_to_currency(@order.reload.amount_in_cents/100) %>
-
-<br/>
-<br/>
-
-<% if @order.open? %>
-    <%= link_to 'Accept Order', order_accept_url(@order.id), method: :put %> |
-<% else %>
-    <%= link_to 'New Order', new_session_url %> |
-<% end %>
-
-<% if @order.open? or @order.accepted? %>
-    <%= link_to 'Cancel Order', order_url(@order.id), method: :delete %>
-<% end %>
-
-<% content_for(:right) do %>
-    <h3> Menu </h3>
-    <strong> Coffees </strong>
-    <ol>
-      <% @coffees.each do |item| %>
-          <li><%= link_to(with_categories(item), order_add_url(@order.id, item_id: item.id), method: :put) %></li>
-      <% end %>
-    </ol>
-
-    <strong> Teas </strong>
-    <ol>
-      <% @teas.each do |item| %>
-          <li><%= link_to(with_categories(item), order_add_url(@order.id, item_id: item.id), method: :put) %></li>
-      <% end %>
-    </ol>
-<% end %>
+<%= render partial: 'right_sidebar' %>
 
 
 

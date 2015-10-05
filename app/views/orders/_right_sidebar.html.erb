@@ -1,0 +1,16 @@
+<% content_for(:right) do %>
+    <h3> Menu </h3>
+    <strong> Coffees </strong>
+    <ol>
+      <% @coffees.each do |item| %>
+          <li><%= link_to(with_categories(item), order_add_url(@order.id, item_id: item.id), method: :put) %></li>
+      <% end %>
+    </ol>
+
+    <strong> Teas </strong>
+    <ol>
+      <% @teas.each do |item| %>
+          <li><%= link_to(with_categories(item), order_add_url(@order.id, item_id: item.id), method: :put) %></li>
+      <% end %>
+    </ol>
+<% end %>
