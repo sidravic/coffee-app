@@ -1,28 +1,33 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The CoffeeApp
 
-Things you may want to cover:
+Code includes provisions for
 
-* Ruby version
+* Barista validations
+  Ensures an order is accepted by a legit barista employed at the store
 
-* System dependencies
+* Order states
+  An order flows through the following states
+  1. Open - This implies that items can be added to orders.
+     Only a barista with a valid barista code can add open an order
 
-* Configuration
+  2. Accepted - Once all the items have been added. This confirms that
+     all items have been added. Has provisions for assigning the order to
+     a customer
 
-* Database creation
+  3. Cancellations
 
-* Database initialization
+ *  MenuItems
 
-* How to run the test suite
+ Menu Items are added as independent records. Each specialization
+ is considered a new record. For instance American Tall and American Venti
+ would be two independent records.
 
-* Services (job queues, cache servers, search engines, etc.)
+ The size attributes are identified via categories. This allows easy
+ extension of newer items to the menu while keeping the menu interface
+ consistent. Also enables faceted searching if full text search engines
+ are used.
 
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+ Views are fairly crufty and coded in a hurry but the core services do
+ most of the work.
